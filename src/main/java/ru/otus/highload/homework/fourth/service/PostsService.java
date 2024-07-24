@@ -132,7 +132,7 @@ public class PostsService {
         RedisFeedEntity redisFeedEntity = redisService.getById(userId);
 
         if (redisFeedEntity != null) {
-            return redisFeedEntity.getPostList();
+            return redisFeedEntity.getPostList().subList(offset.intValue(), limit.intValue());
         }
         try (Connection connection =
                      DriverManager.getConnection(urlSlave, userSlave, passwordSlave);) {
